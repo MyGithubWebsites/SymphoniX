@@ -85,6 +85,42 @@ h2 {
     top: 0;
     z-index: 3;
 }
+
+
+
+
+/* Example styles for touch-friendly keys */
+.key {
+    width: 60px;
+    height: 200px;
+    display: inline-block;
+    margin: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.sharp {
+    width: 40px;
+    height: 120px;
+    background: black;
+    color: white;
+    position: absolute;
+    margin-left: -20px;
+    z-index: 1;
+}
+
+.hints {
+    position: absolute;
+    bottom: 10px;
+    font-size: 14px;
+}
+
+
+
+
+
+
 .key[data-key="87"] { left: 7%; }
 .key[data-key="69"] { left: 17%; }
 .key[data-key="84"] { left: 37%; }
