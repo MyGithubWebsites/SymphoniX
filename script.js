@@ -53,3 +53,43 @@ window.addEventListener("keydown", playNoteFromKeyboard);
 
 // Apply hint effects
 hints.forEach(applyHintTransition);
+
+
+
+// Selecting all keys
+const keys = document.querySelectorAll('.key');
+
+// Function to play the audio associated with a key
+function playSound(keyCode) {
+    const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${keyCode}"]`);
+
+    if (!audio) return; // Stop the function if no audio element
+
+    audio.currentTime = 0; // Rewind to the start
+    audio.play();
+    key.classList.add('playing');
+}
+
+// Remove 'playing' class after the animation
+function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    this.classList.remove('playing');
+}
+
+// Event listeners for each key
+keys.forEach(key => {
+    key.addEventListener('transitionend', removeTransition);
+
+    // Touch event listener
+    key.addEventListener('touchstart', (e) => {
+        e.preventDefault();  // Prevent default touch behavior
+        const keyCode = key.getAttribute('data-key');
+        playSound(keyCode);
+    });
+});
+
+// Keydown event listener for keyboard support
+window.addEventListener('keydown', (e) => {
+    playSound(e.keyCode);
+});
